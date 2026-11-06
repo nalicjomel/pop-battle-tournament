@@ -716,13 +716,19 @@ button{font-family:inherit}
 .bt{padding:7px 9px;font-weight:800;font-size:13px;color:#cbd5e1;border-left:6px solid var(--tc,#475569);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bt+.bt{border-top:1px solid rgba(255,255,255,.1)}
 .bt.w{background:rgba(34,197,94,.25);color:#fff}
-.bt.l{opacity:.4;text-decoration:line-through}
+.bt.l{background:rgba(239,68,68,.18);color:#fecaca}
+.bt.l .nm{text-decoration:line-through;opacity:.75}
+.bt .x{color:#ef4444;font-weight:900;font-size:17px;margin-right:6px}
 .bt.tbd{color:#64748b;font-style:italic}
 .barr{text-align:center;color:#64748b;font-size:13px;margin:4px 0}
 #bout{display:none;width:100%;max-width:430px;text-align:center;font-weight:900;font-size:19px;line-height:1.35;background:rgba(255,255,255,.06);border:2px solid rgba(250,204,21,.6);border-radius:14px;padding:10px}
 #bout .ok{color:#4ade80}#bout .no{color:#f87171}
 .bt.new{animation:bnew .9s ease-out 2}
 @keyframes bnew{0%{transform:scale(1)}40%{transform:scale(1.08);box-shadow:0 0 18px rgba(74,222,128,.8)}100%{transform:scale(1)}}
+#bsvg{width:100%;max-width:430px;height:auto;display:block}
+.bn.gl{filter:drop-shadow(0 0 6px #facc15)}
+.bn.new{animation:bpulse .9s ease-out 2}
+@keyframes bpulse{50%{filter:drop-shadow(0 0 7px #4ade80)}}
 #bchamp{font-size:20px;font-weight:900;color:#facc15;text-align:center;display:none}
 #brk .btn{max-width:430px;width:100%}
 #tsec input{margin-bottom:6px}
@@ -871,7 +877,7 @@ input[type=range]{width:100%;accent-color:#818cf8}
       <label><input type="checkbox" id="reel" checked> Fill empty top/bottom (needs Reel-safe layout)</label>
       <label><input type="checkbox" id="livechk"> Show LIVE badge (lagyan lang kung totoong live)</label>
       <label>Hook text (top)</label>
-      <input type="text" id="in-hook" value="{t1} O {t2}? WAG KANG DUDUWAG" placeholder="Hook text (pwede ang {t1} at {t2})">
+      <input type="text" id="in-hook" value="{t1} O {t2}? SINO ANG MAS MALAKAS?" placeholder="Hook text (pwede ang {t1} at {t2})">
       <label>Comment text (bottom)</label>
       <input type="text" id="in-cta" value="" placeholder="Auto: Comment mo: Team 1 vs. Team 2? 👇">
       <label>Part 2 text (end card)</label>
@@ -891,14 +897,11 @@ input[type=range]{width:100%;accent-color:#818cf8}
     </div>
     <div class="sec"><h4>Physics</h4>
       <div><div class="row"><span>Mother ball speed</span><span id="v-spd">7</span></div><input type="range" id="spd" min="1" max="30" value="7"></div>
-      <div><div class="row"><span>Mother ball size</span><span id="v-rad">14</span></div><input type="range" id="rad" min="10" max="30" value="14"></div>
-      <div><div class="row"><span>Falling ball size</span><span id="v-sr">16</span></div><input type="range" id="sr" min="6" max="20" value="16"></div>
       <label>Game duration</label>
       <select id="dur"><option value="15" selected>15 seconds</option><option value="20">20 seconds</option><option value="30">30 seconds</option><option value="60">1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option></select>
       <label><input type="checkbox" id="snd" checked> Sound FX</label>
 <label><input type="checkbox" id="slowchk" checked> 🎞️ Slow-mo sa huling 3 sec kapag dikit ang score</label>
-<div id="tsec"><label>🏆 TOURNAMENT: 8 team (A1 vs A2, A3 vs A4, B1 vs B2, B3 vs B4)</label><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn0" placeholder="Team 1" style="flex:1;margin:0"><input type="color" id="tc0" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn1" placeholder="Team 2" style="flex:1;margin:0"><input type="color" id="tc1" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn2" placeholder="Team 3" style="flex:1;margin:0"><input type="color" id="tc2" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn3" placeholder="Team 4" style="flex:1;margin:0"><input type="color" id="tc3" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn4" placeholder="Team 5" style="flex:1;margin:0"><input type="color" id="tc4" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn5" placeholder="Team 6" style="flex:1;margin:0"><input type="color" id="tc5" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn6" placeholder="Team 7" style="flex:1;margin:0"><input type="color" id="tc6" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn7" placeholder="Team 8" style="flex:1;margin:0"><input type="color" id="tc7" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div>
-<label><input type="checkbox" id="autobrk" checked> 📊 Auto-labas ng bracket 3 segundo pagkatapos ng laban</label></div>
+<div id="tsec"><label>🏆 TOURNAMENT: 8 team (A1 vs A2, A3 vs A4, B1 vs B2, B3 vs B4)</label><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn0" placeholder="Team 1" style="flex:1;margin:0"><input type="color" id="tc0" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn1" placeholder="Team 2" style="flex:1;margin:0"><input type="color" id="tc1" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn2" placeholder="Team 3" style="flex:1;margin:0"><input type="color" id="tc2" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn3" placeholder="Team 4" style="flex:1;margin:0"><input type="color" id="tc3" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn4" placeholder="Team 5" style="flex:1;margin:0"><input type="color" id="tc4" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn5" placeholder="Team 6" style="flex:1;margin:0"><input type="color" id="tc5" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn6" placeholder="Team 7" style="flex:1;margin:0"><input type="color" id="tc6" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn7" placeholder="Team 8" style="flex:1;margin:0"><input type="color" id="tc7" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div></div>
 <label><input type="checkbox" id="directchk" checked> ⚡ Direct start: walang start menu, tap kahit saan sa laro para magsimula</label>
 <label><input type="checkbox" id="rubchk" checked> ⚖️ Dikit na finish (tinutulungan ang natatalo sa huling bahagi)</label>
       <div><div class="row"><span>Volume ng pop</span><span id="v-vol">240%</span></div><input type="range" id="vol" min="50" max="300" value="240"></div>
@@ -1203,8 +1206,6 @@ $('fs').onclick=()=>{try{document.fullscreenElement?document.exitFullscreen():do
 document.addEventListener('fullscreenchange',()=>setTimeout(resize,150));
 $('rec').onclick=()=>{$('fab').classList.toggle('dim');$('sheet').classList.remove('open')};
 $('spd').oninput=e=>{S.spd=+e.target.value*.5;$('v-spd').textContent=e.target.value;const s=Math.hypot(mb.vx,mb.vy)||1;mb.vx=mb.vx/s*S.spd;mb.vy=mb.vy/s*S.spd};
-$('rad').oninput=e=>{S.rad=+e.target.value;mb.r=S.rad;$('v-rad').textContent=S.rad};
-$('sr').oninput=e=>{S.sr=+e.target.value;$('v-sr').textContent=S.sr;balls.forEach(b=>b.r=S.sr)};
 $('dur').onchange=e=>{S.dur=+e.target.value;reset()};
 $('snd').onchange=e=>{A.on=e.target.checked};
 $('vol').oninput=e=>{A.vol=e.target.value/100;$('v-vol').textContent=e.target.value+'%';if(A.mg)A.mg.gain.value=A.vol};
@@ -1303,38 +1304,53 @@ $('tcv').onclick=()=>{const t=$('thumb');if(t.classList.contains('hideui')){t.cl
 window.addEventListener('resize',()=>{if($('thumb').classList.contains('show'))drawThumb()});
 </script>
 <script>
-/* Mini-bracket para sa thumbnail: lahat ng 8 team, sino ang maglalaban ngayon (gintong border). Hindi ipinapakita ang resulta ng kasalukuyang laban. */
+/* Bracket para sa thumbnail (pahalang, may linya): A sa kaliwa, B sa kanan, tropeo at champion sa gitna.
+   Lahat ng 8 team ay kita. Gintong border = sino ang maglalaban ngayon. Hindi ipinapakita ang resulta ng kasalukuyang laban. */
 function drawMini(x,W,H,F){
-  const v=TOURN.view(),top=H*.525,pad=W*.04,gap=W*.02,pw=(W-2*pad-gap)/2,ph=H*.255,rh=ph/8;
+  const v=TOURN.view(),top=H*.525,ph=H*.275,pad=W*.02,cw=W*.26,g1=W*.03,w3=W*.14,g2=W*.015,wc=W-2*(pad+cw+g1+w3+g2);
+  const bh=ph*.185,ig=ph*.014,pg=ph*.055,hd=ph*.07,y0=top+hd,ys=[y0,y0+bh+ig,y0+2*bh+ig+pg,y0+3*bh+2*ig+pg];
   const nm=i=>i==null?'???':v.names[i].toUpperCase();
   const rr=(a,b,w,h,r)=>{x.beginPath();if(x.roundRect)x.roundRect(a,b,w,h,r);else x.rect(a,b,w,h)};
-  const fitT=(t,sz,maxW)=>{x.font='900 '+sz+'px '+F;const w=x.measureText(t).width;return w>maxW?sz*maxW/w:sz};
-  x.save();x.textBaseline='middle';x.lineJoin='round';
-  const group=(px,y0,id,tag)=>{
-    const res=v.res[id],t=[v.team(id,0),v.team(id,1)];
-    if(v.cur===id){x.save();x.shadowColor='#facc15';x.shadowBlur=rh*.5;x.lineWidth=3;x.strokeStyle='#facc15';rr(px+3,y0+2,pw-6,rh*2-4,rh*.25);x.stroke();x.restore()}
-    t.forEach((ti,k)=>{
-      const ry=y0+k*rh,won=res!==undefined&&res===ti&&ti!=null,lost=res!==undefined&&ti!=null&&res!==ti;
-      if(won){x.fillStyle='rgba(34,197,94,.3)';rr(px+6,ry+3,pw-12,rh-6,rh*.2);x.fill()}
-      x.globalAlpha=lost?.4:1;
-      const cs=rh*.42;x.fillStyle=ti==null?'#475569':v.col[ti];x.fillRect(px+pw*.04,ry+rh/2-cs/2,cs,cs);
-      const tx=px+pw*.04+cs+rh*.25,mw=pw-(tx-px)-pw*.18,label=(won?'✓ ':'')+nm(ti),sz=fitT(label,rh*.62,mw);
-      x.textAlign='left';x.font='900 '+sz+'px '+F;x.fillStyle=ti==null?'#64748b':'#fff';x.fillText(label,tx,ry+rh/2+sz*.04);
-      if(lost){const w=x.measureText(label).width;x.strokeStyle='#fff';x.lineWidth=2;x.beginPath();x.moveTo(tx,ry+rh/2);x.lineTo(tx+w,ry+rh/2);x.stroke()}
-      x.globalAlpha=1});
-    if(tag){x.textAlign='right';x.font='900 '+rh*.4+'px '+F;x.fillStyle='#94a3b8';x.fillText(tag,px+pw-pw*.04,y0+rh/2)}
-  };
-  const panel=(px,label,ids)=>{
-    x.fillStyle='rgba(6,8,20,.88)';rr(px,top,pw,ph,W*.025);x.fill();x.lineWidth=2;x.strokeStyle='rgba(255,255,255,.28)';x.stroke();
-    x.textAlign='center';x.font='900 '+rh*.62+'px '+F;x.fillStyle='#fde68a';x.fillText(label,px+pw/2,top+rh*.5);
-    group(px,top+rh,ids[0]);group(px,top+rh*3.5,ids[1]);group(px,top+rh*6,ids[2],'FINAL');
-  };
-  panel(pad,'BRACKET A',['A1','A2','AF']);panel(pad+pw+gap,'BRACKET B',['B1','B2','BF']);
-  const gy=top+ph+H*.012,gh=H*.05,gw=W-2*pad,a=v.team('GF',0),b=v.team('GF',1);
-  x.fillStyle='rgba(6,8,20,.9)';rr(pad,gy,gw,gh,gh/2);x.fill();x.lineWidth=v.cur==='GF'?4:2;x.strokeStyle=v.cur==='GF'?'#facc15':'rgba(255,255,255,.28)';x.stroke();
-  const t='🏆 GRAND FINALS: '+nm(a)+' VS '+nm(b),sz=fitT(t,gh*.5,gw*.92);
-  x.textAlign='center';x.font='900 '+sz+'px '+F;x.fillStyle='#facc15';x.fillText(t,W/2,gy+gh/2+sz*.04);
-  x.restore();
+  const stat=(res,t)=>(res===undefined||t==null)?'':(res===t?'w':'l');
+  const line=(x1,y1,x2,y2)=>{x.strokeStyle='rgba(255,255,255,.85)';x.lineWidth=Math.max(3,W*.006);x.lineCap='round';x.beginPath();x.moveTo(x1,y1);x.lineTo(x2,y2);x.stroke()};
+  const wid=(t,sz)=>{x.font='900 '+sz+'px '+F;return x.measureText(t).width};
+  function box(bx,by,bw,t,sx,gold){
+    x.save();if(!gold)x.globalAlpha=.82;
+    x.fillStyle=sx==='w'?'rgba(20,83,45,.95)':sx==='l'?'rgba(69,10,10,.95)':gold?'rgba(96,72,6,.96)':'rgba(8,10,26,.92)';rr(bx,by,bw,bh,bh*.22);x.fill();
+    if(gold){x.shadowColor='#facc15';x.shadowBlur=bh*.6}
+    x.lineWidth=gold?Math.max(5,W*.01):2.5;x.strokeStyle=gold?'#facc15':sx==='w'?'#22c55e':sx==='l'?'#ef4444':'rgba(255,255,255,.3)';x.stroke();x.shadowBlur=0;
+    x.textBaseline='middle';
+    if(t==null){x.textAlign='center';x.font='italic 900 '+Math.min(bh*.4,bw*.3)+'px '+F;x.fillStyle='#64748b';x.fillText('???',bx+bw/2,by+bh/2);x.restore();return}
+    const cwid=bh*.13;x.fillStyle=v.col[t];rr(bx+bh*.12,by+bh*.2,cwid,bh*.6,cwid*.3);x.fill();
+    const tx=bx+bh*.12+cwid+bh*.14,avail=bw-(tx-bx)-(sx?bh*.55:bh*.14),label=nm(t);
+    let lines=[label],sz=bh*.46;
+    if(wid(label,sz)>avail){
+      if(label.includes(' ')){const ps=label.split(' ');let best=null;for(let i=1;i<ps.length;i++){const a=ps.slice(0,i).join(' '),b=ps.slice(i).join(' '),m=Math.max(wid(a,100),wid(b,100));if(!best||m<best.m)best={a,b,m}}
+        lines=[best.a,best.b];sz=Math.min(bh*.34,100*avail/best.m)}
+      else sz=sz*avail/wid(label,sz)}
+    x.textAlign='left';x.font='900 '+sz+'px '+F;x.fillStyle=sx==='l'?'#fecaca':'#fff';
+    lines.forEach((ln,i)=>{const ly=by+bh/2+(lines.length>1?(i?.58:-.58)*sz:0);x.fillText(ln,tx,ly);
+      if(sx==='l'){const w=x.measureText(ln).width;x.strokeStyle='#fecaca';x.lineWidth=2;x.beginPath();x.moveTo(tx,ly);x.lineTo(tx+w,ly);x.stroke()}});
+    if(sx){x.textAlign='right';x.font='900 '+bh*.5+'px '+F;x.fillStyle=sx==='w'?'#4ade80':'#ef4444';x.fillText(sx==='w'?'✓':'✕',bx+bw-bh*.14,by+bh/2+bh*.02)}
+    x.restore();
+  }
+  function side(right,label,ids,af){
+    const bx=right?W-pad-cw:pad,ex=right?bx:bx+cw,d=right?-1:1,xm1=ex+d*g1*.35,xm2=ex+d*g1*.7,x3=right?ex-g1-w3:ex+g1,ycs=[];
+    x.save();x.textBaseline='middle';x.textAlign=right?'right':'left';x.font='900 '+hd*.6+'px '+F;x.fillStyle='#fde68a';x.fillText(label,right?bx+cw:bx,top+hd*.45);x.restore();
+    ids.forEach((id,k)=>{const res=v.res[id],ya=ys[2*k],yb=ys[2*k+1];
+      if(v.cur===id){x.save();x.shadowColor='#facc15';x.shadowBlur=bh*.5;x.fillStyle='rgba(250,204,21,.14)';x.strokeStyle='#facc15';x.lineWidth=Math.max(4,W*.007);rr(bx-W*.008,ya-bh*.08,cw+W*.016,2*bh+ig+bh*.16,bh*.28);x.fill();x.stroke();x.restore()}
+      [ya,yb].forEach((y,i)=>{const t=v.team(id,i),sx=stat(res,t);box(bx,y,cw,t,sx,v.cur===id||(v.cur===af&&sx==='w'))});
+      const yc=(ya+yb+bh)/2;ycs.push(yc);
+      line(ex,ya+bh/2,xm1,ya+bh/2);line(ex,yb+bh/2,xm1,yb+bh/2);line(xm1,ya+bh/2,xm1,yb+bh/2);line(xm1,yc,xm2,yc)});
+    const c3=(ycs[0]+ycs[1])/2;line(xm2,ycs[0],xm2,ycs[1]);line(xm2,c3,x3+(right?w3:0),c3);
+    box(x3,c3-bh/2,w3,v.res[af],'',v.cur==='GF');
+    return{c3,inner:right?x3:x3+w3};
+  }
+  const A=side(false,'BRACKET A',['A1','A2'],'AF'),B=side(true,'BRACKET B',['B1','B2'],'BF'),c3=A.c3,cx0=W/2-wc/2;
+  line(A.inner,c3,cx0,c3);line(B.inner,c3,cx0+wc,c3);
+  box(cx0,c3-bh/2,wc,v.res.GF,v.res.GF==null?'':'w',v.cur==='GF');
+  x.save();x.textAlign='center';x.textBaseline='middle';x.font=(bh*.95)+'px '+F;x.fillText('🏆',W/2,c3-bh*1.05);
+  x.font='900 '+bh*.26+'px '+F;x.fillStyle='#facc15';x.fillText('GRAND FINALS',W/2,c3+bh*.78);x.restore();
 }
 const TOURN=(()=>{
  const KEY='pbt-v1',
@@ -1360,23 +1376,72 @@ const TOURN=(()=>{
  function card(m){
   const box=h('div','bm'+(nextM()===m?' cur':''));
   [0,1].forEach(i=>{const t=team(m,i),w=st.res[m.id];
-   const row=h('div','bt'+(t==null?' tbd':w===undefined?'':(w===t?' w'+(banner&&banner.mid===m.id?' new':''):' l')),(w===t&&w!==undefined?'✓ ':'')+nm(t));
+   const lost=w!==undefined&&t!=null&&w!==t,won=w!==undefined&&w===t;
+   const row=h('div','bt'+(t==null?' tbd':w===undefined?'':(won?' w'+(banner&&banner.mid===m.id?' new':''):' l')));
+   if(lost)row.appendChild(h('span','x','✕'));else if(won)row.appendChild(h('span',null,'✓ '));
+   row.appendChild(h('span','nm',nm(t)));
    if(t!=null)row.style.setProperty('--tc',st.cols[t]);box.appendChild(row)});
   return box;
  }
  function render(){
-  const body=$('bbody');body.textContent='';
-  const sec=(title,ids)=>{const s=h('div','bsec');s.appendChild(h('h3',null,title));
-   const r1=h('div','brow');ids.slice(0,2).forEach(id=>r1.appendChild(card(byId(id))));s.appendChild(r1);
-   s.appendChild(h('div','barr','▼ ▼'));const r2=h('div','brow');r2.appendChild(card(byId(ids[2])));s.appendChild(r2);return s};
-  body.appendChild(sec('BRACKET A',['A1','A2','AF']));
-  body.appendChild(sec('BRACKET B',['B1','B2','BF']));
-  const g=h('div','bsec');g.appendChild(h('h3',null,'🏆 GRAND FINALS'));const r=h('div','brow');r.appendChild(card(byId('GF')));g.appendChild(r);body.appendChild(g);
+  const body=$('bbody');body.textContent='';body.appendChild(svgBracket());
   const bo=$('bout');bo.textContent='';
   if(banner){bo.style.display='block';[['ok',banner.up],['no',banner.out]].forEach(([c,t])=>{const d=h('div',c,t);bo.appendChild(d)})}else bo.style.display='none';
   const n=nextM(),ch=$('bchamp'),go=$('tgo');
   if(n){ch.style.display='none';go.style.display='';const a=team(n,0),b=team(n,1);go.textContent='▶ SUSUNOD: '+nm(a)+' vs '+nm(b)}
   else{ch.style.display='block';ch.textContent='🏆 CHAMPION: '+nm(st.res.GF)+'!';go.style.display='none'}
+ }
+ /* Bracket na may mga linya (patayong bersyon): 4 team -> 2 -> 1 sa bawat bracket, tapos Grand Finals sa gitna */
+ function svgBracket(){
+  const NS='http://www.w3.org/2000/svg',W=360,H=480,BH=30,X1=8,W1=116,X2=138,W2=104,X3=256,W3=96,LC='rgba(255,255,255,.45)';
+  const el=(t,a,txt)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e};
+  const svg=el('svg',{id:'bsvg',viewBox:'0 0 '+W+' '+H,role:'img'});
+  const nx=nextM(),nid=nx?nx.id:null,fr=id=>!!(banner&&banner.mid===id);
+  const line=(x1,y1,x2,y2)=>svg.appendChild(el('line',{x1,y1,x2,y2,stroke:LC,'stroke-width':2,'stroke-linecap':'round'}));
+  const stat=(res,t)=>(res===undefined||t==null)?'':(res===t?'w':'l');
+  function box(x,y,w,t,sx,gold,fresh){
+   const g=el('g',{class:'bn'+(fresh?' new':'')+(gold?' gl':'')});
+   const fill=sx==='w'?'#14532d':sx==='l'?'#3b0a0a':gold?'#4a3a06':'#0b0e20',stroke=gold?'#facc15':sx==='w'?'#22c55e':sx==='l'?'#ef4444':'rgba(255,255,255,.25)';
+   g.appendChild(el('rect',{x,y,width:w,height:BH,rx:6,fill,stroke,'stroke-width':gold?3.6:1.5}));
+   if(t==null){g.appendChild(el('text',{x:x+w/2,y:y+BH/2,'text-anchor':'middle','dominant-baseline':'central',fill:'#64748b','font-size':12,'font-style':'italic','font-weight':800},'???'));svg.appendChild(g);return}
+   g.appendChild(el('rect',{x:x+4,y:y+4,width:5,height:BH-8,rx:2,fill:st.cols[t]}));
+   const name=st.names[t],tx=x+15,avail=w-15-(sx?19:6),cw=.67;
+   let lines=[name],fs=Math.min(12,avail/(name.length*cw));
+   if(fs<9.5&&name.includes(' ')){const parts=name.split(' ');let best=null;
+    for(let i=1;i<parts.length;i++){const a=parts.slice(0,i).join(' '),b=parts.slice(i).join(' '),m=Math.max(a.length,b.length);if(!best||m<best.m)best={a,b,m}}
+    lines=[best.a,best.b];fs=Math.min(10.5,avail/(best.m*cw))}
+   fs=Math.max(7.5,fs);
+   const te=el('text',{x:tx,y:y+BH/2,fill:sx==='l'?'#fecaca':'#fff','font-size':fs,'font-weight':800,'dominant-baseline':'central'});
+   if(sx==='l')te.setAttribute('text-decoration','line-through');
+   if(lines.length===1)te.textContent=lines[0];else lines.forEach((ln,i)=>te.appendChild(el('tspan',{x:tx,dy:i?fs*1.05:-fs*.55},ln)));
+   g.appendChild(te);
+   if(sx==='w')g.appendChild(el('text',{x:x+w-8,y:y+BH/2,'text-anchor':'end','dominant-baseline':'central',fill:'#4ade80','font-size':13,'font-weight':900},'✓'));
+   if(sx==='l')g.appendChild(el('text',{x:x+w-8,y:y+BH/2,'text-anchor':'end','dominant-baseline':'central',fill:'#ef4444','font-size':16,'font-weight':900},'✕'));
+   svg.appendChild(g);
+  }
+  function tree(oy,label,r1a,r1b,af){
+   svg.appendChild(el('text',{x:X1,y:oy+14,fill:'#fde68a','font-size':12,'font-weight':900,'letter-spacing':1.5},label));
+   const rows=[24,59,105,140].map(v=>v+oy),cs=[];
+   [[byId(r1a),rows[0],rows[1]],[byId(r1b),rows[2],rows[3]]].forEach(([m,ya,yb])=>{
+    const rs=st.res[m.id];
+    if(nid===m.id)svg.appendChild(el('rect',{x:X1-4,y:ya-4,width:W1+8,height:2*BH+13,rx:9,fill:'rgba(250,204,21,.1)',stroke:'#facc15','stroke-width':2.4}));
+    [ya,yb].forEach((y,i)=>{const t=team(m,i);box(X1,y,W1,t,stat(rs,t),nid===m.id,fr(m.id)&&rs===t)});
+    const xm=X1+W1+7,yc=(ya+yb+BH)/2;cs.push(yc);
+    line(X1+W1,ya+BH/2,xm,ya+BH/2);line(X1+W1,yb+BH/2,xm,yb+BH/2);line(xm,ya+BH/2,xm,yb+BH/2);line(xm,yc,X2,yc);
+    const s2=stat(st.res[af],rs);box(X2,yc-BH/2,W2,rs,s2,nid===af,fr(m.id)||(fr(af)&&s2==='w'));
+   });
+   const xm=X2+W2+7,c3=(cs[0]+cs[1])/2;
+   line(X2+W2,cs[0],xm,cs[0]);line(X2+W2,cs[1],xm,cs[1]);line(xm,cs[0],xm,cs[1]);line(xm,c3,X3,c3);
+   const t3=st.res[af],s3=stat(st.res.GF,t3);box(X3,c3-BH/2,W3,t3,s3,nid==='GF',fr(af)||(fr('GF')&&s3==='w'));
+   return c3;
+  }
+  const cA=tree(0,'BRACKET A','A1','A2','AF'),cB=tree(296,'BRACKET B','B1','B2','BF'),cm=(cA+cB)/2,xc=X3+W3/2;
+  line(xc,cA+BH/2,xc,cm-BH/2);line(xc,cB-BH/2,xc,cm+BH/2);
+  svg.appendChild(el('text',{x:62,y:cm-26,'text-anchor':'middle',fill:'#facc15','font-size':12,'font-weight':900,'letter-spacing':1.5},'GRAND FINALS'));
+  svg.appendChild(el('text',{x:62,y:cm+22,'text-anchor':'middle','font-size':58},'🏆'));
+  svg.appendChild(el('text',{x:xc,y:cm-BH/2-6,'text-anchor':'middle',fill:'#facc15','font-size':11,'font-weight':900,'letter-spacing':1.5},'CHAMPION'));
+  const tc=st.res.GF;box(X3,cm-BH/2,W3,tc,tc==null?'':'w',nid==='GF',fr('GF'));
+  return svg;
  }
  function show(){if(S.playing)pause();render();$('brk').classList.add('show')}
  function hide(){$('brk').classList.remove('show')}
@@ -1385,7 +1450,7 @@ const TOURN=(()=>{
   const m=byId(cur),n=nextM(),w=nm(st.res[cur]);
   const nx=M.find(x=>x.f&&x.f.includes(cur)),lo=team(m,0)===st.res[cur]?team(m,1):team(m,0);
   banner={mid:cur,up:n?('✅ ABANTE: '+w+' → '+(nx?nx.lbl:'')):('🏆 CHAMPION: '+w+'!'),out:'❌ OUT: '+nm(lo)};
-  clearTimeout(tAuto);if($('autobrk').checked)tAuto=setTimeout(()=>{if(S.over)show()},3000);
+  clearTimeout(tAuto);tAuto=setTimeout(()=>{if(S.over)show()},3000);
   $('again').style.display='none';
   const small=$('wcta').querySelector('small');
   if(!n){$('wname').textContent='🏆 CHAMPION: '+w+'!';$('wmsg').textContent='Siya ang kampeon ng buong tournament!';small.textContent='Sino ang nagulat sa champion?';$('wpart2').style.display='none'}
