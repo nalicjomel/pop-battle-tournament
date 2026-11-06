@@ -704,7 +704,7 @@ button{font-family:inherit}
 
 #rnd{text-align:center;font-weight:900;font-size:12px;letter-spacing:.1em;color:#fde68a;padding:2px 0 6px;text-transform:uppercase}
 #rnd:empty{display:none}
-#brk{position:absolute;inset:0;z-index:60;background:rgba(4,5,13,.97);display:none;flex-direction:column;align-items:center;gap:10px;padding:16px 14px 24px;overflow:auto}
+#brk{position:absolute;inset:0;z-index:60;background:#04050d;display:none;flex-direction:column;align-items:center;gap:10px;padding:16px 14px 24px;overflow:auto}
 #brk.show{display:flex}
 #brk h2{margin:4px 0 0;font-size:22px;font-weight:900;color:#facc15;letter-spacing:.04em}
 #bx{position:absolute;top:10px;right:12px;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
@@ -1356,9 +1356,10 @@ const TOURN=(()=>{
  const KEY='pbt-v1',
  DEF=['Kape','Milo','Gatas','Nido','Great Taste White','Kopiko','Coffee Blanca','Birch Tree'],
  COL=['#b45309','#22c55e','#e5e7eb','#3b82f6','#facc15','#ef4444','#a855f7','#06b6d4'],
- M=[{id:'A1',lbl:'Bracket A • Round 1',s:[0,1]},{id:'A2',lbl:'Bracket A • Round 1',s:[2,3]},{id:'AF',lbl:'Bracket A • Final',f:['A1','A2']},
-    {id:'B1',lbl:'Bracket B • Round 1',s:[4,5]},{id:'B2',lbl:'Bracket B • Round 1',s:[6,7]},{id:'BF',lbl:'Bracket B • Final',f:['B1','B2']},
-    {id:'GF',lbl:'🏆 Grand Finals',f:['AF','BF']}];
+ M=[{id:'A1',lbl:'Bracket A • Round 1',s:[0,1]},{id:'B1',lbl:'Bracket B • Round 1',s:[4,5]},
+    {id:'A2',lbl:'Bracket A • Round 1',s:[2,3]},{id:'B2',lbl:'Bracket B • Round 1',s:[6,7]},
+    {id:'AF',lbl:'Bracket A • Final',f:['A1','A2']},{id:'BF',lbl:'Bracket B • Final',f:['B1','B2']},
+    {id:'GF',lbl:'🏆 Grand Finals',f:['AF','BF']}]; // salitan: A, B, A, B, A Final, B Final, Grand Finals
  let st={names:DEF.slice(),cols:COL.slice(),res:{}},cur=null,banner=null,tAuto=0;
  const byId=id=>M.find(m=>m.id===id),
   team=(m,i)=>m.s?m.s[i]:st.res[m.f[i]],

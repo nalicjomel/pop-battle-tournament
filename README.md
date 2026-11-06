@@ -6,7 +6,7 @@ Bracket A: Kape vs Milo, Gatas vs Nido -> Final A
 Bracket B: Great Taste White vs Kopiko, Coffee Blanca vs Birch Tree -> Final B
 Grand Finals: Champion A vs Champion B (7 laban lahat)
 
-Play: https://nalicjomel.github.io/pop-battle-tournament
+Play: https://nalicjomel.github.io/REPO-NAME/   (palitan ang REPO-NAME)
 
 - Tap kahit saan para magsimula ang laban (direct start).
 - Awtomatikong napupunta sa susunod na laban ang nanalo.
@@ -19,3 +19,12 @@ Play: https://nalicjomel.github.io/pop-battle-tournament
 2. Pagkatapos ng laban: lalabas ang nanalo, tapos ang bracket na may "ABANTE" at "OUT".
 3. Thumbnail maker: nandoon ang lahat ng team at ang maglalaban ngayon (walang spoiler).
 4. 🏆 > "SUSUNOD" para ilipat sa susunod na laban.
+
+## Pagkakasunod ng laban (salitan)
+1. A1: Kape vs Milo
+2. B1: Great Taste White vs Kopiko
+3. A2: Gatas vs Nido
+4. B2: Coffee Blanca vs Birch Tree
+5. Final ng Bracket A
+6. Final ng Bracket B
+7. Grand Finals

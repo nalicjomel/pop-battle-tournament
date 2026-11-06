@@ -1,5 +1,5 @@
 // Bump this version every time you update the game so phones fetch the new files.
-const CACHE = 'pop-tournament-v8';
+const CACHE = 'pop-tournament-v9';
 const CORE = [
   './',
   './index.html',
