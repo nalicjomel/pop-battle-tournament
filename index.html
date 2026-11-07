@@ -887,9 +887,9 @@ input[type=range]{width:100%;accent-color:#818cf8}
     <div class="sec"><h4>Start Hook (unang 3 segundo)</h4>
       <label><input type="checkbox" id="hfchk" checked> Maglabas ng hook text pagka-START</label>
       <label>Linya 1</label>
-      <input type="text" id="in-hf1" value="Pustahan, mali ang hula mo 😏" placeholder="Hal: Pustahan, mali ang hula mo">
+      <input type="text" id="in-hf1" value="{t1} o {t2}? Pumili ka na!" placeholder="Pwede ang {t1} at {t2}">
       <label>Linya 2</label>
-      <input type="text" id="in-hf2" value="{t1} o {t2}? Pumili ka na!" placeholder="Pwede ang {t1} at {t2}">
+      <input type="text" id="in-hf2" value="Abangan ang dulo! 👀" placeholder="Hal: Abangan ang dulo!">
       <label>Hook sa gitna, bago ang Final Burst (blangko = wala)</label>
       <input type="text" id="in-hf3" value="Teka, parang may daya dito ah 😳" placeholder="Hal: Teka, parang may daya dito ah">
       <label>Hook sa SLOW-MO, huling 3 segundo (lalabas lang kapag dikit)</label>
@@ -902,6 +902,7 @@ input[type=range]{width:100%;accent-color:#818cf8}
       <label><input type="checkbox" id="snd" checked> Sound FX</label>
 <label><input type="checkbox" id="slowchk" checked> 🎞️ Slow-mo sa huling 3 sec kapag dikit ang score</label>
 <div id="tsec"><label>🏆 TOURNAMENT: 8 team (A1 vs A2, A3 vs A4, B1 vs B2, B3 vs B4)</label><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn0" placeholder="Team 1" style="flex:1;margin:0"><input type="color" id="tc0" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn1" placeholder="Team 2" style="flex:1;margin:0"><input type="color" id="tc1" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn2" placeholder="Team 3" style="flex:1;margin:0"><input type="color" id="tc2" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn3" placeholder="Team 4" style="flex:1;margin:0"><input type="color" id="tc3" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn4" placeholder="Team 5" style="flex:1;margin:0"><input type="color" id="tc4" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn5" placeholder="Team 6" style="flex:1;margin:0"><input type="color" id="tc5" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn6" placeholder="Team 7" style="flex:1;margin:0"><input type="color" id="tc6" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div><div style="display:flex;gap:6px;margin-bottom:6px"><input type="text" id="tn7" placeholder="Team 8" style="flex:1;margin:0"><input type="color" id="tc7" title="Kulay ng team" style="width:52px;padding:2px;margin:0"></div></div>
+<div style="display:flex;gap:6px;margin:4px 0 8px"><button type="button" id="tbak" class="btn alt" style="flex:1;padding:8px">💾 Backup ng progress</button><button type="button" id="trst" class="btn alt" style="flex:1;padding:8px">📥 I-restore</button></div>
 <label><input type="checkbox" id="directchk" checked> ⚡ Direct start: walang start menu, tap kahit saan sa laro para magsimula</label>
 <label><input type="checkbox" id="rubchk" checked> ⚖️ Dikit na finish (tinutulungan ang natatalo sa huling bahagi)</label>
       <div><div class="row"><span>Volume ng pop</span><span id="v-vol">240%</span></div><input type="range" id="vol" min="50" max="300" value="240"></div>
@@ -1073,7 +1074,7 @@ function physics(){
     if(md<=mb.r+b.r){
       mb.vx-=mx/(md||1)*.4;mb.vy-=my/(md||1)*.4;
       const sp=Math.hypot(mb.vx,mb.vy)||1;mb.vx=mb.vx/sp*S.spd;mb.vy=mb.vy/sp*S.spd;
-      if(b.team===1){S.t1.score++;A.pop(520)}else{S.t2.score++;A.pop(380,'triangle')}
+      if(b.team===1){S.t1.score++;if(!S.warm)A.pop(520)}else{S.t2.score++;if(!S.warm)A.pop(380,'triangle')}
       burst(b.x,b.y,gc(b.color));pops.push({x:b.x,y:b.y,a:1,color:gc(b.color)});hud();balls.splice(i,1);
     }
   }
@@ -1135,10 +1136,12 @@ function start(){S.started=true;S.playing=true;$('start').classList.add('hide');
       balls.push({x:arena.x+Math.cos(a)*d,y:arena.y+Math.sin(a)*d,vx:(Math.random()-.5)*1.5,vy:(Math.random()-.5)*1.5,r:S.sr,team:t,color:t===1?S.t1.color:S.t2.color,inArena:true})}}
   for(let i=0;i<14;i++)setTimeout(()=>{if(S.playing)spawn(nextTeam())},i*110)}
 let cdBusy=false,cdTok=0;
+const WARM_FRAMES=90; // ~1.5 segundo ng totoong laro na ginagawa agad pagka-tap (60 frame = 1 segundo)
+function warmUp(){S.warm=true;try{for(let i=0;i<WARM_FRAMES;i++){if(i%14===0)S.lastSpawn=0;physics()}}catch(e){}S.warm=false;S.lastSpawn=Date.now()}
 function countdown(){if(cdBusy||S.started)return;cdBusy=true;const my=++cdTok,e=$('cdn'),v=$('cdvs');$('start').classList.add('hide');$('sheet').classList.remove('open');if(!$('directchk').checked)v.classList.add('show');
   // No 3-2-1: the battle starts instantly, "FIGHT!" flashes over the action
   e.classList.remove('go');void e.offsetWidth;if(!$('directchk').checked){e.textContent='FIGHT!';e.style.fontSize='72px';e.classList.add('go')}
-  A.tone(1400,'square',.3,.15,1400);cdBusy=false;start();
+  A.tone(1400,'square',.3,.15,1400);cdBusy=false;start();warmUp();
   setTimeout(()=>{if(my===cdTok){e.textContent='';v.classList.remove('show')}},800)}
 function pause(){S.playing=false;setPP()}
 function gameOver(){
@@ -1367,12 +1370,23 @@ const TOURN=(()=>{
   nextM=()=>M.find(m=>st.res[m.id]===undefined)||null,
   save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}},
   h=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e};
- function loadSt(){try{const j=JSON.parse(localStorage.getItem(KEY)||'null');if(j&&Array.isArray(j.names)&&j.names.length===8&&j.res&&typeof j.res==='object')st={names:j.names.map((n,i)=>String(n||DEF[i])),cols:COL.map((c,i)=>(Array.isArray(j.cols)&&/^#[0-9a-f]{6}$/i.test(j.cols[i]))?j.cols[i]:c),res:j.res}}catch(e){}}
+ function norm(j){if(!(j&&Array.isArray(j.names)&&j.names.length===8&&j.res&&typeof j.res==='object'))return null;
+  const res={};M.forEach(m=>{const v=j.res[m.id];if(Number.isInteger(v)&&v>=0&&v<8)res[m.id]=v});
+  return{names:j.names.map((n,i)=>String(n||DEF[i])),cols:COL.map((c,i)=>(Array.isArray(j.cols)&&/^#[0-9a-f]{6}$/i.test(j.cols[i]))?j.cols[i]:c),res}}
+ function loadSt(){try{const n=norm(JSON.parse(localStorage.getItem(KEY)||'null'));if(n)st=n}catch(e){}}
+ function fillInputs(){for(let i=0;i<8;i++){$('tn'+i).value=st.names[i];$('tc'+i).value=st.cols[i]}}
+ function backup(){const t=JSON.stringify(st);
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(()=>alert('Na-copy ang backup! I-paste mo sa Notes o Messenger para i-save.')).catch(()=>prompt('I-copy ang backup na ito:',t));
+  else prompt('I-copy ang backup na ito:',t)}
+ function restore(){const t=prompt('I-paste ang backup ng progress:');if(!t)return;
+  let n=null;try{n=norm(JSON.parse(t))}catch(e){}
+  if(!n){alert('Hindi valid ang backup.');return}
+  st=n;save();fillInputs();const nx=nextM();if(nx)load(nx);else show();alert('Na-restore ang progress!')}
  function load(m){
   const a=team(m,0),b=team(m,1);if(a==null||b==null)return;cur=m.id;banner=null;clearTimeout(tAuto);
   $('in-n1').value=nm(a);$('in-n2').value=nm(b);$('in-match').value=nm(a)+' vs '+nm(b);
   S.t1.name=nm(a);S.t2.name=nm(b);setColor(1,st.cols[a]);setColor(2,st.cols[b]);applyNames();reset();
-  $('rnd').textContent=m.lbl+' • Laban '+(M.indexOf(m)+1)+'/7';
+  $('rnd').textContent=m.lbl+' • Laban '+(st.res[m.id]===undefined?Object.keys(st.res).length+1:M.indexOf(m)+1)+'/7';
  }
  function card(m){
   const box=h('div','bm'+(nextM()===m?' cur':''));
@@ -1464,6 +1478,7 @@ const TOURN=(()=>{
   for(let i=0;i<8;i++){const e=$('tn'+i);e.value=st.names[i];
    e.addEventListener('input',()=>{st.names[i]=e.value.trim()||DEF[i];save();if($('brk').classList.contains('show'))render();else if(!S.started&&cur){const m=byId(cur);if(m)load(m)}})}
   for(let i=0;i<8;i++){const c=$('tc'+i);c.value=st.cols[i];c.addEventListener('input',()=>{st.cols[i]=c.value;save();if($('brk').classList.contains('show'))render();else if(!S.started&&cur){const m=byId(cur);if(m)load(m)}})}
+  $('tbak').onclick=backup;$('trst').onclick=restore;
   $('tbk').onclick=show;$('tbk2').onclick=show;$('bx').onclick=hide;
   $('tgo').onclick=()=>{const n=nextM();if(n){hide();load(n)}};
   $('trs').onclick=()=>{if(confirm('I-reset ang buong tournament? Mabubura ang lahat ng resulta.')){st.res={};save();const n=nextM();if(n){load(n)}render()}};
